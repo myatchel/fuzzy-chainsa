@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cute Website</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e7,#d6f3ff);
+    overflow:hidden;
+}
+
+.card{
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    z-index:10;
+}
+
+h1{
+    color:#ff69b4;
+    margin-bottom:15px;
+}
+
+p{
+    color:#555;
+    margin-bottom:20px;
+}
+
+button{
+    border:none;
+    padding:12px 24px;
+    border-radius:50px;
+    background:#ff69b4;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.heart{
+    position:absolute;
+    color:#ff69b4;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🌸 Hello Cutie! 🌸</h1>
+    <p id="message">Click the button for a sweet message 💖</p>
+    <button onclick="showMessage()">Click Me ✨</button>
+</div>
+
+<script>
+const messages = [
+    "You are amazing 💖",
+    "Have a wonderful day 🌸",
+    "Keep smiling 😊",
+    "You can do anything ✨",
+    "Stay happy and shine 🌟"
+];
+
+function showMessage(){
+    const random = Math.floor(Math.random() * messages.length);
+    document.getElementById("message").innerText = messages[random];
+}
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = ["💖","💕","💗","🌸"][Math.floor(Math.random()*4)];
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (20 + Math.random()*25) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
